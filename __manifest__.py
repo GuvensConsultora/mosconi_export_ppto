@@ -1,7 +1,7 @@
 
 {
     "name": "Export Payment Transactions to Excel (HTTP)",
-    "version": "18.0.1",
+    "version": "18.0",
     "depends": ["payment"],
     "data": [
         "security/ir.model.access.csv",
