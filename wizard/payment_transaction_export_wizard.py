@@ -61,13 +61,14 @@ class PaymentTransactionExportWizard(models.TransientModel):
                         else:
                             sheet.write(row, 1, str(sale_order.date_order or ""))
                             sheet.write(row, 2, str(sale_order.date_order or ""))
-                            sheet.write(row, 3, t.reference or "")
-                            sheet.write(row, 4, t.partner_id.name or "")
+                            sheet.write(row, 4, t.reference or "")
+                            sheet.write(row, 5, t.partner_id.name or "")
                             sheet.write(row, 6, sale_order.partner_shipping_id.street or "")
                             sheet.write(row, 7, t.partner_id.email or "")
                             sheet.write(row, 8, float(t.amount or 0.0))
                             sheet.write(row, 9, t.state or "")
-                            sheet.write(row, 10, line.display_name or "")
+                            sheet.write(row, 11, line.code or "")
+                            sheet.write(row, 11, line.name or "")
                             row += 1
 
         # 3️⃣ Cerrar workbook (CRÍTICO)
