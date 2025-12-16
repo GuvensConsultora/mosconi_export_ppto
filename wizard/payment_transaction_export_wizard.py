@@ -3,7 +3,7 @@ import io
 import base64
 import xlsxwriter
 from datetime import datetime
-
+from odoo.exceptions import UserError
 
 class PaymentTransactionExportWizard(models.TransientModel):
     _name = "payment.transaction.export.wizard"
@@ -43,6 +43,9 @@ class PaymentTransactionExportWizard(models.TransientModel):
 
         row = 1
         for t in transactions:
+            
+            raise UserError(f"Referencia {t.reference} /n Ppto {t.sale_order_ids} " )
+            
             sheet.write(row, 0, t.reference or "")
             sheet.write(row, 1, str(t.create_date or ""))
             sheet.write(row, 2, t.payment_method_id.name or "")
