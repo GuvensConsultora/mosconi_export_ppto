@@ -44,7 +44,9 @@ class PaymentTransactionExportWizard(models.TransientModel):
         workbook.close()
         output.seek(0)
 
-        data = base64.b64encode(output.read()).decode()
+        # Guardamos en sesión (NO en URL)
+        request.session["mosconi_xlsx"] = output.read()
+        #data = base64.b64encode(output.read()).decode()
         filename = f"payment_transactions_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
 
         return {

@@ -1,7 +1,7 @@
 
 from odoo import http
 from odoo.http import request
-import base64
+
 
 class PaymentTransactionExportController(http.Controller):
 
@@ -10,9 +10,13 @@ class PaymentTransactionExportController(http.Controller):
         type="http",
         auth="user"
     )
-    def export_payment_transactions(self, filename, data, **kw):
-        filecontent = base64.b64decode(data)
+    def export_payment_transactions(self, filename, **kw):
+        filecontent = request.session.pop("mosconi_xlsx", None)
+        #filecontent = base64.b64decode(data)
 
+        if not filecontent:
+            return request.not_found()
+        
         return request.make_response(
             filecontent,
             headers=[
