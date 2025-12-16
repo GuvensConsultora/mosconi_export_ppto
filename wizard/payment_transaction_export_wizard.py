@@ -1,4 +1,4 @@
-
+from odoo.http import request
 from odoo import models
 import io
 import base64
