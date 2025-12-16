@@ -47,7 +47,8 @@ class PaymentTransactionExportWizard(models.TransientModel):
             for sale_order in t.sale_order_ids:
                 for lines in sale_order.order_line:
                     for line in lines:
-                        texto += (f"Nro {line.display_name} \n Cantidad {line.product_uom_qty} \n Precio {line.price_unit} \n ")
+                        if line.l10n_ar_ncm_code == "9999":
+                            texto += (f"Nro {line.display_name} \n Cantidad {line.product_uom_qty} \n Precio {line.price_unit} \n ")
                 raise UserError(f"Referencia {t.reference} \n  Ppto {t.sale_order_ids} \n Lineas de pptos {sale_order.order_line} \n {texto}" )
             
             sheet.write(row, 0, t.reference or "")
