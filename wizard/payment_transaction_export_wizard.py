@@ -44,7 +44,7 @@ class PaymentTransactionExportWizard(models.TransientModel):
         row = 1
         for t in transactions:
             for sale_order in t.sale_order_ids:
-                raise UserError(f"Referencia {t.reference} \n  Ppto {t.sale_order_ids} \n Lineas de pptos {sale_order.order_lines}" )
+                raise UserError(f"Referencia {t.reference} \n  Ppto {t.sale_order_ids} \n Lineas de pptos {sale_order.sale.order.line}" )
             
             sheet.write(row, 0, t.reference or "")
             sheet.write(row, 1, str(t.create_date or ""))
