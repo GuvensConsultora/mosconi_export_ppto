@@ -60,8 +60,8 @@ class PaymentTransactionExportWizard(models.TransientModel):
                     #raise UserError(f"Referencia {t.reference} \n  Ppto {t.sale_order_ids} \n Lineas de pptos {sale_order.order_line} \n {texto}" )
                         else:
                             sheet.write(row, 4, t.reference or "")
-                            sheet.write(row, 2, str(t.create_date or ""))
-                            sheet.write(row, 3, str(t.commitment_date or ""))
+                            sheet.write(row, 2, str(t.date_order or ""))
+                            sheet.write(row, 3, str(t.date_order or ""))
                             sheet.write(row, 5, t.partner_id.name or "")
                             sheet.write(row, 6, t.partner_id.partner_shipping_id or "")
                             sheet.write(row, 5, t.partner_id.email or "")
