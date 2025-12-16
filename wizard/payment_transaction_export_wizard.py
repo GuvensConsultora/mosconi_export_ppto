@@ -27,9 +27,13 @@ class PaymentTransactionExportWizard(models.TransientModel):
         header = workbook.add_format({"bold": True})
 
         headers = [
+            "Importar",
+            "Fecha Pedido",
+            "Fecha Entrega",
+            "Cod, Hora",
             "Referencia",
-            "Creado el",
-            "Método",
+            "Apellido y Nombre",
+            "Entrega",
             "Proveedor",
             "Cliente",
             "Email",
@@ -46,21 +50,25 @@ class PaymentTransactionExportWizard(models.TransientModel):
             texto = ""
             for sale_order in t.sale_order_ids:
                 for lines in sale_order.order_line:
+                    or_line = 1
                     for line in lines:
+                        if or_line == "1":
+                            row_flete = row
                         if line.product_template_id.l10n_ar_ncm_code == "9999":
+                            sheet.write(row_flete, 9, line.price_unit or "")
                             texto += (f"Nro {line.display_name} \n Cantidad {line.product_uom_qty} \n Precio {line.price_unit} \n ")
-                raise UserError(f"Referencia {t.reference} \n  Ppto {t.sale_order_ids} \n Lineas de pptos {sale_order.order_line} \n {texto}" )
-            
-            sheet.write(row, 0, t.reference or "")
-            sheet.write(row, 1, str(t.create_date or ""))
-            sheet.write(row, 2, t.payment_method_id.name or "")
-            sheet.write(row, 3, t.provider_id.name or "")
-            sheet.write(row, 4, t.partner_id.name or "")
-            sheet.write(row, 5, t.partner_id.email or "")
-            sheet.write(row, 6, float(t.amount or 0.0))
-            sheet.write(row, 7, t.state or "")
-            sheet.write(row, 8, t.company_id.name or "")
-            row += 1
+                    #raise UserError(f"Referencia {t.reference} \n  Ppto {t.sale_order_ids} \n Lineas de pptos {sale_order.order_line} \n {texto}" )
+                        else:
+                            sheet.write(row, 4, t.reference or "")
+                            sheet.write(row, 2, str(t.create_date or ""))
+                            sheet.write(row, 3, str(t.commitment_date or "")
+                            sheet.write(row, 5, t.partner_id.name or "")
+                            sheet.write(row, 6, t.partner_id.partner_shipping_id or "")
+                            sheet.write(row, 5, t.partner_id.email or "")
+                            sheet.write(row, 6, float(t.amount or 0.0))
+                            sheet.write(row, 7, t.state or "")
+                            sheet.write(row, 8, line.display_name or "")
+                            row += 1
 
         # 3️⃣ Cerrar workbook (CRÍTICO)
         workbook.close()
