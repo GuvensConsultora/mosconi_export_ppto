@@ -75,8 +75,8 @@ class PaymentTransactionExportWizard(models.TransientModel):
                             sheet.write(row, 15, line.product_id.name or "")
                             sheet.write(row, 16, line.product_uom_qty or "")
                             sheet.write(row, 17, line.price_unit or "")
-                            sheet.write(row, 16, line.price_total or "")
-                            sheet.write(row, 17, sale_order.partner_id.id or "")
+                            sheet.write(row, 18, line.price_total or "")
+                            sheet.write(row, 19, sale_order.partner_id.id or "")
                             row += 1
 
         # 3️⃣ Cerrar workbook (CRÍTICO)
