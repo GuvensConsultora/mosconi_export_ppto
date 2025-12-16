@@ -1,5 +1,5 @@
-from odoo.http import request
 from odoo import models
+from odoo.http import request
 import io
 import base64
 import xlsxwriter
