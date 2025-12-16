@@ -59,15 +59,15 @@ class PaymentTransactionExportWizard(models.TransientModel):
                             texto += (f"Nro {line.display_name} \n Cantidad {line.product_uom_qty} \n Precio {line.price_unit} \n ")
                             #raise UserError(f"Referencia {row_flete} \n  Ppto {t.sale_order_ids} \n Lineas de pptos {sale_order.order_line} \n {texto}" )
                         else:
-                            sheet.write(row, 4, t.reference or "")
+                            sheet.write(row, 1, str(sale_order.date_order or ""))
                             sheet.write(row, 2, str(sale_order.date_order or ""))
-                            sheet.write(row, 3, str(sale_order.date_order or ""))
-                            sheet.write(row, 5, sale_order.partner_id.name or "")
-                            sheet.write(row, 6, sale_order.partner_shipping_id.name or "")
-                            sheet.write(row, 5, t.partner_id.email or "")
-                            sheet.write(row, 6, float(t.amount or 0.0))
-                            sheet.write(row, 7, t.state or "")
-                            sheet.write(row, 8, line.display_name or "")
+                            sheet.write(row, 3, t.reference or "")
+                            sheet.write(row, 4, t.partner_id.name or "")
+                            sheet.write(row, 6, sale_order.partner_shipping_id.street or "")
+                            sheet.write(row, 7, t.partner_id.email or "")
+                            sheet.write(row, 8, float(t.amount or 0.0))
+                            sheet.write(row, 9, t.state or "")
+                            sheet.write(row, 10, line.display_name or "")
                             row += 1
 
         # 3️⃣ Cerrar workbook (CRÍTICO)
