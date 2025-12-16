@@ -63,7 +63,7 @@ class PaymentTransactionExportWizard(models.TransientModel):
                             sheet.write(row, 2, str(sale_order.date_order or ""))
                             sheet.write(row, 3, str(sale_order.date_order or ""))
                             sheet.write(row, 5, sale_order.partner_id.name or "")
-                            sheet.write(row, 6, sale_order.partner_shipping_id or "")
+                            sheet.write(row, 6, sale_order.partner_shipping_id.name or "")
                             sheet.write(row, 5, t.partner_id.email or "")
                             sheet.write(row, 6, float(t.amount or 0.0))
                             sheet.write(row, 7, t.state or "")
