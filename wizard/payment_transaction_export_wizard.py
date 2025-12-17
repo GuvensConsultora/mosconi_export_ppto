@@ -53,7 +53,7 @@ class PaymentTransactionExportWizard(models.TransientModel):
                     or_line = 1
                     for line in lines:
                         row_flete = 0
-                        if or_line == "1":
+                        if or_line == 1:
                             row_flete += row
                         if line.product_template_id.l10n_ar_ncm_code == "9999":
                             #sheet.write(row_flete, 9, line.price_unit or "")
