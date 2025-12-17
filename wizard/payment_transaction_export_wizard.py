@@ -55,6 +55,7 @@ class PaymentTransactionExportWizard(models.TransientModel):
                         row_flete = 0
                         if or_line == 1:
                             row_flete = row
+                            or_line += 1
                         if line.product_id.l10n_ar_ncm_code == "9999":
                             sheet.write(row_flete, 20, line.price_unit or "")
                             texto += (f"Nro {line.display_name} \n Cantidad {line.product_uom_qty} \n Precio {line.price_unit} \n ")
