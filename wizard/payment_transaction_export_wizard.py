@@ -54,9 +54,10 @@ class PaymentTransactionExportWizard(models.TransientModel):
                     for line in lines:
                         row_flete = 0
                         if or_line == 1:
-                            row_flete = row
+                            row_flete = row - 1
                         if line.product_id.l10n_ar_ncm_code == "9999":
                             sheet.write(row_flete, 20, line.price_unit or "")
+                            or_line += 1
                             texto += (f"Nro {line.display_name} \n Cantidad {line.product_uom_qty} \n Precio {line.price_unit} \n ")
                                 #raise UserError(f"Referencia {row_flete} \n  Ppto {t.sale_order_ids} \n Lineas de pptos {sale_order.order_line} \n {texto}" )
                         else:
@@ -79,7 +80,7 @@ class PaymentTransactionExportWizard(models.TransientModel):
                             sheet.write(row, 18, line.price_total or "")
                             sheet.write(row, 19, sale_order.partner_id.id or "")
                             row += 1
-                        or_line =+ 1
+                            or_line =+ 1
 
         # 3️⃣ Cerrar workbook (CRÍTICO)
         workbook.close()
