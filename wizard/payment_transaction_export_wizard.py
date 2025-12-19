@@ -79,7 +79,7 @@ class PaymentTransactionExportWizard(models.TransientModel):
                             sheet.write(row, 4, t.reference or "")
                             sheet.write(row, 5, t.partner_id.name or "")
                             sheet.write(row, 6, t.partner_id.l10n_latam_identification_type_id.name or "")
-                            sheet.write(row, 7, t.partner_id.vat or "")
+                            sheet.write(row, 7, t.partner_id.l10n_ar_vat or "")
                             sheet.write(row, 8, t.partner_id.l10n_ar_afip_responsibility_type_id.name or "")
                             sheet.write(row, 9, sale_order.partner_shipping_id.street or "")
                             sheet.write(row, 10, sale_order.partner_shipping_id.country_id.name or "")
