@@ -33,6 +33,9 @@ class PaymentTransactionExportWizard(models.TransientModel):
             "Cod, Hora",
             "NRO. OC ID VENTA",
             "Apellido y Nombre",
+            "Tipo Doc",
+            "Nro",
+            "Resp frente IVA",
             "Domicilio",
             "Pais",
             "Provincia",
@@ -75,6 +78,9 @@ class PaymentTransactionExportWizard(models.TransientModel):
                             sheet.write(row, 2, str(sale_order.date_order or ""))
                             sheet.write(row, 4, t.reference or "")
                             sheet.write(row, 5, t.partner_id.name or "")
+                            sheet.write(row, 5, t.partner_id.l10n_latam_identification_type_id.name or "")
+                            sheet.write(row, 5, t.partner_id.vat or "")
+                            sheet.write(row, 5, t.partner_id.l10n_ar_afip_responsibility_type_id.name or "")
                             sheet.write(row, 6, sale_order.partner_shipping_id.street or "")
                             sheet.write(row, 7, sale_order.partner_shipping_id.country_id.name or "")
                             sheet.write(row, 8, sale_order.partner_shipping_id.state_id.name or "")
