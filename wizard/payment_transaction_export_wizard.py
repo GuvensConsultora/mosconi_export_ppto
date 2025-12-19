@@ -38,9 +38,9 @@ class PaymentTransactionExportWizard(models.TransientModel):
             "Provincia",
             "Ciudad",
             "Cod. Postal"
-            "Importe",
-            "Estado",
-            "Empresa",
+            "Email",
+            "Teléfono",
+            "Vacio",
         ]
 
         for col, h in enumerate(headers):
