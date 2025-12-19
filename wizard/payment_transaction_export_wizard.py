@@ -49,8 +49,8 @@ class PaymentTransactionExportWizard(models.TransientModel):
         for t in transactions:
             texto = ""
             for sale_order in t.sale_order_ids:
+                or_line = 1
                 for lines in sale_order.order_line:
-                    or_line = 1
                     for line in lines:
                         row_flete = 0
                         if or_line == 1:
