@@ -41,6 +41,15 @@ class PaymentTransactionExportWizard(models.TransientModel):
             "Email",
             "Teléfono",
             "Vacio",
+            "Status",
+            "SKU",
+            "Nombre Producto",
+            "Cantidad",
+            "Precio Unitario",
+            "Pcio Tot con Imp",
+            "Id Cliente",
+            "Valor Flete",
+            
         ]
 
         for col, h in enumerate(headers):
