@@ -31,12 +31,13 @@ class PaymentTransactionExportWizard(models.TransientModel):
             "Fecha Pedido",
             "Fecha Entrega",
             "Cod, Hora",
-            "Referencia",
+            "NRO. OC ID VENTA",
             "Apellido y Nombre",
-            "Entrega",
-            "Proveedor",
-            "Cliente",
-            "Email",
+            "Domicilio",
+            "Pais",
+            "Provincia",
+            "Ciudad",
+            "Cod. Postal"
             "Importe",
             "Estado",
             "Empresa",
@@ -56,7 +57,7 @@ class PaymentTransactionExportWizard(models.TransientModel):
                         if or_line == 1:
                             row_flete = row - 1
                         if line.product_id.l10n_ar_ncm_code == "9999":
-                            sheet.write(row_flete, 20, line.price_unit or "")
+                            sheet.write(row_flete, 21, line.price_unit or "")
                             or_line += 1
                             texto += (f"Nro {line.display_name} \n Cantidad {line.product_uom_qty} \n Precio {line.price_unit} \n ")
                                 #raise UserError(f"Referencia {row_flete} \n  Ppto {t.sale_order_ids} \n Lineas de pptos {sale_order.order_line} \n {texto}" )
@@ -69,16 +70,17 @@ class PaymentTransactionExportWizard(models.TransientModel):
                             sheet.write(row, 7, sale_order.partner_shipping_id.country_id.name or "")
                             sheet.write(row, 8, sale_order.partner_shipping_id.state_id.name or "")
                             sheet.write(row, 9, sale_order.partner_shipping_id.city or "")
-                            sheet.write(row, 10, t.partner_id.email or "")
-                            sheet.write(row, 11, sale_order.partner_shipping_id.phone or sale_order.partner_invoice_id.phone)  
-                            sheet.write(row, 12, row_flete)
-                            sheet.write(row, 13, t.state or "")
-                            sheet.write(row, 14, line.product_id.default_code or "")
-                            sheet.write(row, 15, line.product_id.name or "")
-                            sheet.write(row, 16, line.product_uom_qty or "")
-                            sheet.write(row, 17, line.price_unit or "")
-                            sheet.write(row, 18, line.price_total or "")
-                            sheet.write(row, 19, sale_order.partner_id.id or "")
+                            sheet.write(row, 10, t.partner_id.zip or "")
+                            sheet.write(row, 11, t.partner_id.email or "")
+                            sheet.write(row, 12, sale_order.partner_shipping_id.phone or sale_order.partner_invoice_id.phone)  
+                            sheet.write(row, 13, row_flete)
+                            sheet.write(row, 14, t.state or "")
+                            sheet.write(row, 15, line.product_id.default_code or "")
+                            sheet.write(row, 16, line.product_id.name or "")
+                            sheet.write(row, 17, line.product_uom_qty or "")
+                            sheet.write(row, 18, line.price_unit or "")
+                            sheet.write(row, 19, line.price_total or "")
+                            sheet.write(row, 20, sale_order.partner_id.id or "")
                             row += 1
                             or_line =+ 1
 
