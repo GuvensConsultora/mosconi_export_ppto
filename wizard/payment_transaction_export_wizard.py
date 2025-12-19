@@ -37,7 +37,7 @@ class PaymentTransactionExportWizard(models.TransientModel):
             "Pais",
             "Provincia",
             "Ciudad",
-            "Cod. Postal"
+            "Cod. Postal",
             "Email",
             "Teléfono",
             "Vacio",
