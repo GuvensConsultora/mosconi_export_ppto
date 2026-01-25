@@ -8,4 +8,5 @@
         "views/payment_transaction_export_views.xml"
     ],
     "installable": True,
+    "license": "LGPL-3",
 }
